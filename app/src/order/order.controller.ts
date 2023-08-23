@@ -12,6 +12,7 @@ import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { OrderStatus } from './entities/order.entity';
+import { FindAllOrderDto } from './dto/find-all-order.dto';
 
 @Controller('order')
 export class OrderController {
@@ -23,14 +24,8 @@ export class OrderController {
   }
 
   @Get()
-  findAll(
-    @Query('sweetName') sweetName: string,
-    @Query('status') status: OrderStatus,
-  ) {
-    return this.orderService.findAll({
-      sweetName,
-      status
-    });
+  findAll(@Query() findQuery: FindAllOrderDto) {
+    return this.orderService.findAll(findQuery);
   }
 
   @Get(':id')

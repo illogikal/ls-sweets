@@ -36,10 +36,15 @@ describe('SweetController', () => {
 
   describe('create', () => {
     it('should return an array of sweets', async () => {
-      const result: SweetEntity[] = [];
+      const result: SweetEntity = {
+        ingredients: ['chocolate', 'flour', 'sugar'],
+        name: 'Chocolate Cake',
+        price: 1099,
+        quantityInStock: 50,
+      };
       jest
         .spyOn(service, 'create')
-        .mockImplementation(async (): Promise<SweetEntity[]> => result);
+        .mockImplementation(async (): Promise<SweetEntity> => result);
 
       expect(
         await controller.create({
@@ -59,16 +64,16 @@ describe('SweetController', () => {
         .spyOn(service, 'findAll')
         .mockImplementation(async (): Promise<SweetEntity[]> => result);
 
-      expect(await controller.findAll()).toBe(result);
+      expect(await controller.findAll({})).toBe(result);
     });
   });
 
   describe('findOne', () => {
-    it('should return an array of sweets', async () => {
-      const result: SweetEntity[] = [];
+    it('should find one sweet', async () => {
+      const result: SweetEntity = null;
       jest
         .spyOn(service, 'findOne')
-        .mockImplementation(async (): Promise<SweetEntity[]> => result);
+        .mockImplementation(async (): Promise<SweetEntity> => result);
 
       expect(await controller.findOne('Chocolate')).toBe(result);
     });

@@ -68,7 +68,7 @@ describe('OrderController', () => {
         .spyOn(service, 'findAll')
         .mockImplementation(async (): Promise<OrderEntity[]> => result);
 
-      expect(await controller.findAll()).toBe(result);
+      expect(await controller.findAll({})).toBe(result);
     });
   });
 

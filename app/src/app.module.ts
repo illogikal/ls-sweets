@@ -6,6 +6,7 @@ import { OrderModule } from './order/order.module';
 import { SweetModule } from './sweet/sweet.module';
 import { ProducedByModule } from './producedBy/producedBy.module';
 import { OrderContainsModule } from './orderContains/orderContains.module';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -26,5 +27,8 @@ import { OrderContainsModule } from './orderContains/orderContains.module';
     ProducedByModule,
     OrderContainsModule,
   ],
+  providers: [
+    AppService
+  ]
 })
 export class AppModule {}

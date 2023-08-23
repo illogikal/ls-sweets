@@ -71,7 +71,7 @@ describe('SweetService', () => {
   });
 
   it('findAll', async () => {
-    const result = await service.findAll();
+    const result = await service.findAll({});
     expect(result[0]).toStrictEqual({
       ingredients: ['chocolate', 'flour', 'sugar'],
       name: 'Chocolate Cake',
