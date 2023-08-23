@@ -1,0 +1,37 @@
+version: '3'
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j-container
+    healthcheck:
+      test: wget http://localhost:7474 || exit 1
+      interval: 1s
+      timeout: 10s
+      retries: 20
+      start_period: 3s
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/your_password
+    volumes:
+      - ./neo4j/data:/data  
+      - ./neo4j/logs:/logs
+  node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node-app-container
+    volumes:
+      - ./app:/app
+    environment:
+      NEO4J_HOST: neo4j
+      NEO4J_PORT: 7687
+      NEO4J_USERNAME: neo4j
+      NEO4J_PASSWORD: your_password
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      neo4j:
+        condition: service_healthy
