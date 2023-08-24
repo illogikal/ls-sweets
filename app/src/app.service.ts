@@ -11,50 +11,13 @@ export class AppService implements OnModuleInit {
 
   async runMigrations(): Promise<void> {
     await this.neo4jService.write(
-      `CREATE (order:Order {
-        orderId: $orderId,
-        customerName: $customerName,
-        status: $status
-      })`,
-      {
-        orderId: '123',
-        customerName: '123',
-        status: '123',
-      },
+      `CREATE CONSTRAINT sweet_name IF NOT EXISTS FOR (sweet:Sweet) REQUIRE sweet.name IS NODE UNIQUE`,
     );
     await this.neo4jService.write(
-      `CREATE (sweet:Sweet {
-        name: $name,
-        ingredients: $ingredients,
-        price: $price,
-        quantityInStock: $quantityInStock
-      })
-      RETURN sweet;`,
-      {
-        name: 'aaa',
-        ingredients: 'aaa',
-        price: 'aaa',
-        quantityInStock: 'aaa',
-      },
+      `CREATE CONSTRAINT order_id IF NOT EXISTS FOR (order:Order) REQUIRE order.orderId IS NODE UNIQUE`,
     );
     await this.neo4jService.write(
-      `CREATE (machine:Machine {
-        machineId: $machineId,
-        type: $type,
-        capacity: $capacity,
-        status: $status
-      })
-      RETURN machine;`,
-      {
-        machineId: 'aaa',
-        type: 'aaa',
-        capacity: 'aaa',
-        status: 'aaa',
-      },
+      `CREATE CONSTRAINT machine_id IF NOT EXISTS FOR (machine:Machine) REQUIRE machine.machineId IS NODE UNIQUE`,
     );
-    await this.neo4jService.read(`CREATE CONSTRAINT sweet_name IF NOT EXISTS FOR (sweet:Sweet) REQUIRE. sweet.name IS NODE UNIQUE`)
-    // await this.neo4jService.write(`CREATE CONSTRAINT order_id IF NOT EXISTS FOR (order:Order) REQUIRE. order.orderId IS NODE UNIQUE`)
-    // await this.neo4jService.write(`CREATE CONSTRAINT machine_id IF NOT EXISTS FOR (machine:Machine) REQUIRE. machine.machineId IS NODE UNIQUE`)
-    console.log(await this.neo4jService.write(`CALL db.constraints`))
   }
 }

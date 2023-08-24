@@ -72,7 +72,7 @@ export class OrderService {
   }
 
   async remove(orderId: string): Promise<null> {
-    const res = await this.neo4jService.write(
+    await this.neo4jService.write(
       `MATCH (order:Order { orderId: $orderId })
       RETURN order;`,
       {

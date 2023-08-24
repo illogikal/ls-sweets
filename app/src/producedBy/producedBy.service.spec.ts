@@ -112,7 +112,6 @@ describe('ProducedByService', () => {
     });
   });
 
-
   it('findAll none', async () => {
     const result = await service.findAll({ machineId: '234', sweetName: null });
     expect(result).toStrictEqual([]);

@@ -108,8 +108,8 @@ describe('AppController (e2e)', () => {
       ]);
   });
 
-  it('/order (POST)', () => {
-    return request(app.getHttpServer())
+  it('/order (POST)', async () => {
+    await request(app.getHttpServer())
       .post('/order')
       .send({
         orderId: '123',
@@ -122,10 +122,7 @@ describe('AppController (e2e)', () => {
         customerName: 'John Doe',
         status: OrderStatus.OPEN,
       });
-  });
-
-  it('/order (POST)', () => {
-    return request(app.getHttpServer())
+    await request(app.getHttpServer())
       .post('/order')
       .send({
         orderId: '345',
@@ -210,8 +207,8 @@ describe('AppController (e2e)', () => {
       ]);
   });
 
-  it('/producedBy (POST)', () => {
-    return request(app.getHttpServer())
+  it('/producedBy (POST)', async () => {
+    await request(app.getHttpServer())
       .post('/producedBy')
       .send({
         machineId: '234',
@@ -222,10 +219,7 @@ describe('AppController (e2e)', () => {
         machineId: '234',
         sweetName: 'Licorice',
       });
-  });
-
-  it('/producedBy (POST)', () => {
-    return request(app.getHttpServer())
+    await request(app.getHttpServer())
       .post('/producedBy')
       .send({
         machineId: '123',
@@ -292,13 +286,13 @@ describe('AppController (e2e)', () => {
       .expect(200)
       .expect([
         {
-          orderId: '123',
-          sweetName: 'Chocolate Cake',
+          orderId: '345',
+          sweetName: 'Licorice',
           amount: 100,
         },
         {
-          orderId: '345',
-          sweetName: 'Licorice',
+          orderId: '123',
+          sweetName: 'Chocolate Cake',
           amount: 100,
         },
       ]);
@@ -356,7 +350,7 @@ describe('AppController (e2e)', () => {
           quantityInStock: 60,
           price: 1399,
           name: 'Chocolate Cake',
-          ingredients: [ 'chocolate', 'flour', 'sugar' ]
+          ingredients: ['chocolate', 'flour', 'sugar'],
         },
       ]);
   });

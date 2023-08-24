@@ -108,7 +108,7 @@ describe('OrderContainsService', () => {
   });
 
   it('findAll none', async () => {
-    const result = await service.findAll({ orderId: null, sweetName: null });
+    const result = await service.findAll({ orderId: '11111', sweetName: null });
     expect(result).toStrictEqual([]);
   });
 

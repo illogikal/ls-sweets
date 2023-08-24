@@ -68,11 +68,13 @@ describe('OrderService', () => {
 
   it('findAll', async () => {
     const result = await service.findAll({});
-    expect(result).toStrictEqual([{
-      orderId: '123',
-      customerName: 'John Doe',
-      status: OrderStatus.OPEN,
-    }]);
+    expect(result).toStrictEqual([
+      {
+        orderId: '123',
+        customerName: 'John Doe',
+        status: OrderStatus.OPEN,
+      },
+    ]);
   });
 
   it('findOne', async () => {

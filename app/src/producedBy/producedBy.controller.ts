@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Delete } from '@nestjs/common';
 import { ProducedByService } from './producedBy.service';
 import { CreateProducedByDto } from './dto/create-producedBy.dto';
 import { ProducedByEntity } from './entities/producedBy.entity';

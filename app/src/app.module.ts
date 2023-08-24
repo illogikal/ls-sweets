@@ -27,8 +27,6 @@ import { AppService } from './app.service';
     ProducedByModule,
     OrderContainsModule,
   ],
-  providers: [
-    AppService
-  ]
+  providers: [AppService],
 })
 export class AppModule {}

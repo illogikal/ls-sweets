@@ -63,7 +63,7 @@ export class MachineService {
   }
 
   async remove(machineId: string): Promise<any> {
-    const res = await this.neo4jService.write(
+    await this.neo4jService.write(
       `MATCH (machine:Machine { machineId: $machineId })
       RETURN machine;`,
       {

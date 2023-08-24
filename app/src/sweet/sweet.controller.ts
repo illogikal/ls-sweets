@@ -26,7 +26,9 @@ export class SweetController {
 
   @Get()
   findAll(@Query() queryParams: FindAllSweetDto): Promise<SweetEntity[]> {
-    return this.sweetService.findAll(plainToClass(FindAllSweetDto, queryParams));
+    return this.sweetService.findAll(
+      plainToClass(FindAllSweetDto, queryParams),
+    );
   }
 
   @Get(':name')
